@@ -1,0 +1,11 @@
+[package]
+name = "graphql"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-graphql = "5.0.4"
+prisma = { path = "../prisma" }
+services = { path = "../services" }

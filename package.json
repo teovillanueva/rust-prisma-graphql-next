@@ -1,0 +1,35 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "description": "Simple todo-app with nextjs, rust, prisma & graphql",
+  "main": "index.js",
+  "repository": "https://github.com/teovillanueva/rust-prisma-graphql-next.git",
+  "author": "Teodoro Villanueva <teodoro2102@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "build": "turbo run build",
+    "codegen": "graphql-codegen --config graphql.config.js"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/*"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.16.2",
+    "@graphql-codegen/client-preset": "1.2.4",
+    "@graphql-codegen/import-types-preset": "^2.2.6",
+    "@graphql-codegen/typed-document-node": "^2.3.11",
+    "@graphql-codegen/typescript": "^2.8.6",
+    "@graphql-codegen/typescript-apollo-client-helpers": "^2.2.6",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "graphql": "^16.6.0",
+    "graphql-codegen-apollo-next-ssr": "^1.7.4",
+    "turbo": "^1.6.3"
+  }
+}

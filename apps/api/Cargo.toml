@@ -12,3 +12,6 @@ rocket = "0.5.0-rc.2"
 graphql = { path = "../../libs/graphql" }
 tokio = "1.23.0"
 
+[[bin]]
+name = "api"
+path = "src/main.rs"

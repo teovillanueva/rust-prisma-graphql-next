@@ -16,28 +16,27 @@ export type TodoItemProps = {
 
 export function TodoItem({ todo }: TodoItemProps) {
   const [updateTodo] = useUpdateTodoMutation({
-    optimisticResponse: (vars) => {
-      return {
-        updateTodo: {
-          __typename: "Todo",
-          completed:
-            typeof vars.input.completed === "bigint"
-              ? vars.input.completed
-              : todo.completed,
-          title: vars.input.title || todo.title,
-          id: todo.id,
-        },
-      };
-    },
+    optimisticResponse: (vars) => ({
+      updateTodo: {
+        __typename: "Todo",
+        completed:
+          typeof vars.input.completed === "bigint"
+            ? vars.input.completed
+            : todo.completed,
+        title: vars.input.title || todo.title,
+        id: todo.id,
+      },
+    }),
   });
 
   const [deleteTodo] = useDeleteTodoMutation({
     variables: { todoId: todo.id },
-    optimisticResponse: { deleteTodo: { deletedId: todo.id } },
+    optimisticResponse: () => ({ deleteTodo: { deletedId: todo.id } }),
     update(cache) {
-      const normalizedId = cache.identify({ id: todo.id, __typename: "Todo" });
-      cache.evict({ id: normalizedId });
-      cache.gc();
+      cache.modify({
+        id: cache.identify({ __typename: "Todo", id: todo.id }),
+        fields: (_, { DELETE }) => DELETE,
+      });
     },
   });
 

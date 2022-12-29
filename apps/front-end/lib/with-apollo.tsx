@@ -37,7 +37,9 @@ export const getApolloClient = (
   initialState?: NormalizedCacheObject
 ) => {
   const httpLink = createHttpLink({
-    uri: "http://localhost:8000/graphql",
+    uri:
+      process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
+      "http://localhost:8000/graphql",
     fetch,
   });
 

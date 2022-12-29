@@ -1,3 +1,4 @@
 [workspace]
 members = ["apps/api", "apps/prisma-cli", "libs/services", "libs/prisma","libs/graphql"]
+default-members = ["apps/api"]
 resolver = "2"
